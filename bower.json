@@ -1,0 +1,21 @@
+{
+  "name": "marfeel-test",
+  "description": "",
+  "main": "",
+  "authors": [
+    "Botond Fekete"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "normalize-scss": "~3.0.3"
+  }
+}
