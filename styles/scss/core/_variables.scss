@@ -1,0 +1,33 @@
+// plain colours
+
+$white: #fff;
+$black: #121212;
+$grey: #a2a2a2;
+
+$green-light: #59D21E;
+$green-dark: #036600;
+
+$blue-light: #06C8E6;
+$blue-dark: #004F60;
+
+$orange-light: #FDC100;
+$orange-dark: #D55214;
+
+// global colour themes
+
+$color-core-light: $white;
+$color-core-medium: $grey;
+$color-core-dark: $black;
+
+$color-core-text: $color-core-dark;
+$color-core-text-special: $color-core-medium;
+
+// fonts
+
+$font-family: 'Source Sans Pro', sans serif;
+
+$font-weight-normal: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+

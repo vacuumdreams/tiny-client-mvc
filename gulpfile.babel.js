@@ -4,12 +4,20 @@ import gulp from 'gulp';
 
 import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
+import autoprefix from 'gulp-autoprefixer';
 import minify from 'gulp-minify-css';
 import uglify from 'gulp-uglify';
+
+import rename from 'gulp-rename';
+import gutil from 'gulp-util';
+import assign from 'lodash.assign';
 
 import browserify from 'browserify';
 import babelify from 'babelify';
 import watchify from 'watchify';
+
+import stream from 'vinyl-source-stream';
+import buffer from 'vinyl-buffer';
 
 // project specific variables
 
@@ -21,16 +29,16 @@ const paths = {
 		}
 	],
 	'styles': {
+		'dir': './styles/scss',
 		'entry': './styles/scss/style.scss',
-		'dest': './styles/dist',
+		'dest': './styles/dist'
 	},
 	'scripts': {
-		'entry': './scripts/app/app.js',
-		'dest': './scripts/dist',
-	},
+		'dir': './scripts/app',
+		'entry': './scripts/app/script.js',
+		'dest': './scripts/dist'
+	}
 };
-
-const bundler = watchify(browserify('./src/js/app.js', args)).transform(babelify);
 
 // VENDOR Task ================================
 // - handler to deal with third party libs (bower components, in this case)
@@ -50,20 +58,43 @@ gulp.task('styles', () => {
 	gulp.src(paths.styles.entry)
 		.pipe(sourcemaps.init())
 		.pipe(sass())
+		.pipe(autoprefix())
 		.pipe(minify())
 		.pipe(sourcemaps.write('../src'))
 		.pipe(gulp.dest(paths.styles.dest));
 });
 
 // SCRIPTS Task ================================
-// - js files specific handlers
+// - js specific handlers
 
 gulp.task('scripts', () => {
+	let bundler = watchify(browserify(assign({}, watchify.args, {
+			'entries': ['script.js'],
+			'basedir': paths.scripts.dir,
+			'debug': true
+		}))).transform(babelify),
 
+	   	runBundler = () => {
+			bundler.bundle()
+			    .on('error', gutil.log.bind(gutil, "Browserify Error"))
+			    .pipe(stream(paths.scripts.entry))
+			    .pipe(buffer())
+			    .pipe(rename('script.min.js'))
+			    .pipe(sourcemaps.init({ loadMaps: true }))
+			    .pipe(uglify())
+			    .pipe(sourcemaps.write('../src'))
+			    .pipe(gulp.dest(paths.scripts.dest));
+
+			return bundler;
+		};
+
+	runBundler()
+		.on('update', runBundler)
+		.on('log', gutil.log);
 });
 
 // WATCH Task ==================================
-// - set listeners to .scss and .js files 
+// - set listener to .scss file mods
 
 gulp.task('watch', () => {
 	gulp.watch('./styles/scss/**/*.scss', ['styles']);
@@ -74,7 +105,6 @@ gulp.task('watch', () => {
 
 gulp.task('default', [
 	'vendor',
-	'styles',
 	'scripts',
 	'watch'
 ]);

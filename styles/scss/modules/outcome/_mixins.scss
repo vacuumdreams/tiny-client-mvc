@@ -1,0 +1,71 @@
+@mixin outcome-themify($color-tablet, $color-mobile) {
+	&-tablet {
+		&-text {
+			color: $color-tablet;
+		}
+
+		&-circle {
+			stroke: $color-tablet;
+		}
+	}
+
+	&-mobile {
+		&-text {
+			color: $color-mobile;
+		}
+
+		&-circle {
+			stroke: $color-mobile;
+		}
+	}
+
+	&-rect {
+		fill: mix($color-tablet, $color-mobile);
+	}
+}
+
+// @outcome-rect - helps calculating rect element positions
+//  -param: $dimension-container
+//  -param: $dimension-long
+//  -param: $dimension-short
+
+@mixin outcome-rects($dimension-container, $dimension-long, $dimension-short) {
+	$top: 'nth-of-type(1)';
+	$right: 'nth-of-type(2)';
+	$left: 'nth-of-type(3)';
+	$bottom: 'nth-of-type(4)';
+
+	$dimension-toplefts: ($outcome-dimension-header * 0.05) + ($outcome-dimension-rect-longside / 2);
+	$dimension-rightbottoms: ($outcome-dimension-header * 0.95) - $outcome-dimension-rect-longside - ($outcome-dimension-rect-longside / 2);
+
+
+	&:#{$top},
+	&:#{$bottom} {
+		x: $dimension-container / 2;
+		width: $dimension-short;
+		height: $dimension-long;
+	}
+
+	&:#{$right},
+	&:#{$left} {
+		y: $dimension-container / 2;
+		width: $dimension-long;	
+		height: $dimension-short;
+	}
+
+	&:#{$top} {
+		y: $dimension-toplefts;
+	}
+
+	&:#{$right} {
+		x: $dimension-rightbottoms;
+	}
+
+	&:#{$bottom} {
+		y: $dimension-rightbottoms;
+	}
+
+	&:#{$left} {
+		x: $dimension-toplefts;
+	}
+}

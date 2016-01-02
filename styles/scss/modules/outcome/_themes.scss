@@ -1,0 +1,13 @@
+.outcome {
+	&-revenue {
+		@include outcome-themify($outcome-color-revenue-tablet, $outcome-color-revenue-mobile);
+	}
+
+	&-impression {
+		@include outcome-themify($outcome-color-impressions-tablet, $outcome-color-impressions-mobile);
+	}
+
+	&-visits {
+		@include outcome-themify($outcome-color-visits-tablet, $outcome-color-visits-mobile);
+	}
+}
