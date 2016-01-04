@@ -4,6 +4,7 @@
 //  -param: $color-mobile
 
 @mixin outcome-themify($name, $color-tablet, $color-mobile) {
+
 	&-tablet {
 		&-text {
 			color: $color-tablet;

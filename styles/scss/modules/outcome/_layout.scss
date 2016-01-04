@@ -39,6 +39,10 @@
 		height: 100%;
 	}
 
+	&:not(.loaded) &-circle {
+		stroke-dashoffset: $outcome-dimension-header * 3.14!important;
+	}
+
 	&-circle {
 		r: 47.5%;
 		cx: 50%;
@@ -49,7 +53,7 @@
 		stroke-dasharray: $outcome-dimension-header * 3.14;
 		transform: rotate(-90deg);
 		transform-origin: 50% 50%;
-		transition: stroke-dashoffset 0.35s;
+		transition: stroke-dashoffset 0.35s ease-out;
 
 		&-breakdown {
 			r: 40%;
@@ -62,6 +66,13 @@
 
 	&-rect {
 		@include outcome-rects($outcome-dimension-stroke, 2%, 1%);
+	}
+
+	&-clipper {
+		x: 0;
+		y: $outcome-dimension-header * 0.625;
+		width: 100%;
+		height: 62.5%;
 	}
 
 	&-title,

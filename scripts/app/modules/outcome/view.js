@@ -8,6 +8,12 @@ export default class {
 	}
 
 	render() {
-		this.element.innerHTML = tplService.to_html(this.template, this.model);
+		let self = this;
+
+		self.element.innerHTML = tplService.to_html(self.template, self.model);
+		setTimeout(() => {
+			self.element.className = `${self.element.className} outcome-${self.model.moduleClass} loaded`;
+		}, 0);
+		
 	}
 }

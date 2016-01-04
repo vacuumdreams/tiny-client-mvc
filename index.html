@@ -9,51 +9,48 @@
 	<body>
 
 		<template id="outcome-template">
-			<section class="outcome outcome-{{moduleClass}}">
-				<header class="outcome-header">
-					<h2 class="outcome-title">{{name}}</h2>
-					<p class="outcome-value">{{value}}</p>
-				
-					<figure class="outcome-figure">
-						<svg class="outcome-vector">
-							<defs>
-								<clipPath id="{{moduleClass}}-clip">
-									<polygon class="outcome-clipper" points="{{breakdown}}"></polygon>
-								</clipPath>
+			<header class="outcome-header">
+				<h2 class="outcome-title">{{name}}</h2>
+				<p class="outcome-value">{{value}}</p>
+			
+				<figure class="outcome-figure">
+					<svg class="outcome-vector">
+						<defs>
+							<clipPath id="{{moduleClass}}-clip">
+								<polygon class="outcome-clipper" points="{{breakdown}}"></polygon>
+							</clipPath>
 
-								<clipPath id="{{moduleClass}}-clipborder">
-									<polygon class="outcome-clipper" points="{{breakdownBorder}}"></polygon>
-								</clipPath>
-							</defs>
+							<clipPath id="{{moduleClass}}-clipborder">
+								<polygon class="outcome-clipper" points="{{breakdownBorder}}"></polygon>
+							</clipPath>
+						</defs>
 
-							{{#distribution}}
-								<circle class="outcome-circle outcome-{{moduleClass}}-{{cssClass}}-circle" stroke-dashoffset="{{offset}}"></circle>
-							{{/distribution}}
+						{{#distribution}}
+							<circle class="outcome-circle outcome-{{moduleClass}}-{{cssClass}}-circle" stroke-dashoffset="{{offset}}"></circle>
+						{{/distribution}}
 
-							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
-							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
-							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
-							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+						<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+						<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+						<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+						<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
 
-							<circle class="outcome-circle-breakdown outcome-{{moduleClass}}-breakdown-border"></circle>
-							<circle class="outcome-circle-breakdown outcome-{{moduleClass}}-breakdown"></circle>
-						</svg>
-					</figure>
-				</header>
+						<circle class="outcome-circle-breakdown outcome-{{moduleClass}}-breakdown-border"></circle>
+						<circle class="outcome-circle-breakdown outcome-{{moduleClass}}-breakdown"></circle>
+					</svg>
+				</figure>
+			</header>
 
-				<ul class="outcome-details">
-					{{#distribution}}
-						<li class="outcome-item">
-							<h3 class="outcome-item-name outcome-{{moduleClass}}-{{cssClass}}-text">{{type}}</h3>
-							<p class="outcome-item-values">
-								<span class="outcome-item-percentage">{{percent}}%</span>
-								<span class="outcome-item-price">{{value}}</span>
-							</p>
-						</li>
-					{{/distribution}}
-				</ul>
-
-			</section>
+			<ul class="outcome-details">
+				{{#distribution}}
+					<li class="outcome-item">
+						<h3 class="outcome-item-name outcome-{{moduleClass}}-{{cssClass}}-text">{{type}}</h3>
+						<p class="outcome-item-values">
+							<span class="outcome-item-percentage">{{percent}}%</span>
+							<span class="outcome-item-price">{{value}}</span>
+						</p>
+					</li>
+				{{/distribution}}
+			</ul>
 		</template>
 
 		<main class="outcome-container">
@@ -139,6 +136,6 @@
 			</section>
 		</main>
 
-		<script type="text/javascript" src="scripts/dist/script.min.js"></script>
+		<script src="scripts/dist/script.min.js" type="text/javascript"></script>
 	</body>
 </html>

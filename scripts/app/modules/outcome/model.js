@@ -1,5 +1,6 @@
 export default class {
 	constructor(response, params) {
+		this.params = params;
 		this.name = response.name;
 		this._value = response.value;
 		this.value = this.getValue(response.value);
