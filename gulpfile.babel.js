@@ -26,6 +26,10 @@ const paths = {
 		{
 			'entry': './bower_components/normalize-scss/_normalize.scss',
 			'dest': './styles/scss/vendor'
+		},
+		{
+			'entry': './bower_components/mustache.js/mustache.js',
+			'dest': './scripts/vendor'
 		}
 	],
 	'styles': {
@@ -60,7 +64,8 @@ gulp.task('styles', () => {
 		.pipe(sass())
 		.pipe(autoprefix())
 		.pipe(minify())
-		.pipe(sourcemaps.write('../src'))
+		.pipe(rename('style.min.css'))
+		.pipe(sourcemaps.write('../srcmaps'))
 		.pipe(gulp.dest(paths.styles.dest));
 });
 
@@ -82,7 +87,7 @@ gulp.task('scripts', () => {
 			    .pipe(rename('script.min.js'))
 			    .pipe(sourcemaps.init({ loadMaps: true }))
 			    .pipe(uglify())
-			    .pipe(sourcemaps.write('../src'))
+			    .pipe(sourcemaps.write('../srcmaps'))
 			    .pipe(gulp.dest(paths.scripts.dest));
 
 			return bundler;

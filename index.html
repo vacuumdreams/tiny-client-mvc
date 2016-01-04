@@ -3,120 +3,138 @@
 <html>
 	<head>
 		<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700' rel='stylesheet' type='text/css'>
-		<link href="styles/dist/style.css" type="text/css" rel="stylesheet">
+		<link href="styles/dist/style.min.css" type="text/css" rel="stylesheet">
 	</head>
 
 	<body>
+
+		<template id="outcome-template">
+			<section class="outcome outcome-{{moduleClass}}">
+				<header class="outcome-header">
+					<h2 class="outcome-title">{{name}}</h2>
+					<p class="outcome-value">{{value}}</p>
+				
+					<figure class="outcome-figure">
+						<svg class="outcome-vector">
+							<defs>
+								<clipPath id="{{moduleClass}}-clip">
+									<polygon class="outcome-clipper" points="{{breakdown}}"></polygon>
+								</clipPath>
+
+								<clipPath id="{{moduleClass}}-clipborder">
+									<polygon class="outcome-clipper" points="{{breakdownBorder}}"></polygon>
+								</clipPath>
+							</defs>
+
+							{{#distribution}}
+								<circle class="outcome-circle outcome-{{moduleClass}}-{{cssClass}}-circle" stroke-dashoffset="{{offset}}"></circle>
+							{{/distribution}}
+
+							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+							<rect class="outcome-rect outcome-{{moduleClass}}-rect"></rect>
+
+							<circle class="outcome-circle-breakdown outcome-{{moduleClass}}-breakdown-border"></circle>
+							<circle class="outcome-circle-breakdown outcome-{{moduleClass}}-breakdown"></circle>
+						</svg>
+					</figure>
+				</header>
+
+				<ul class="outcome-details">
+					{{#distribution}}
+						<li class="outcome-item">
+							<h3 class="outcome-item-name outcome-{{moduleClass}}-{{cssClass}}-text">{{type}}</h3>
+							<p class="outcome-item-values">
+								<span class="outcome-item-percentage">{{percent}}%</span>
+								<span class="outcome-item-price">{{value}}</span>
+							</p>
+						</li>
+					{{/distribution}}
+				</ul>
+
+			</section>
+		</template>
+
 		<main class="outcome-container">
-			<section class="outcome outcome-revenue">
+			<section class="outcome" id="module-revenue">
 				<header class="outcome-header">
-					<h2 class="outcome-title">Revenue</h2>
-					<p class="outcome-value">200.000&pound;</p>
-				
 					<figure class="outcome-figure">
 						<svg class="outcome-vector">
-							<circle class="outcome-circle outcome-revenue-tablet-circle"></circle>
-							<circle class="outcome-circle outcome-revenue-mobile-circle"></circle>
-							<rect class="outcome-rect outcome-revenue-rect"></rect>
-							<rect class="outcome-rect outcome-revenue-rect"></rect>
-							<rect class="outcome-rect outcome-revenue-rect"></rect>
-							<rect class="outcome-rect outcome-revenue-rect"></rect>
-							<path></path>
+							<defs>
+								<clipPath id="outcome-clip">
+									<rect class="outcome-clipper"></rect>
+								</clipPath>
+							</defs>
+
+							<circle class="outcome-circle"></circle>
+							<circle class="outcome-circle"></circle>
+
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+
+							<circle class="outcome-circle-breakdown"></circle>
 						</svg>
 					</figure>
 				</header>
 
-				<ul class="outcome-details">
-					<li class="outcome-item">
-						<h3 class="outcome-item-name outcome-revenue-tablet-text">Tablet</h3>
-						<p class="outcome-item-values">
-							<span class="outcome-item-percentage">60%</span>
-							<span class="outcome-item-price">80.000&pound;</span>
-						</p>
-					</li>
-
-					<li class="outcome-item">
-						<h3 class="outcome-item-name outcome-revenue-mobile-text">Smartphone</h3>
-						<p class="outcome-item-values">
-							<span class="outcome-item-percentage">40%</span>
-							<span class="outcome-item-price">120.000&pound;</span>
-						</p>
-					</li>
-				</ul>
+				<ul class="outcome-details"></ul>
 
 			</section>
 
-			<section class="outcome outcome-impression">
+			<section class="outcome" id="module-impressions">
 				<header class="outcome-header">
-					<h2 class="outcome-title">Impressions</h2>
-					<p class="outcome-value">50.000.000</p>
-				
 					<figure class="outcome-figure">
 						<svg class="outcome-vector">
-							<circle class="outcome-circle outcome-impression-tablet-circle"></circle>
-							<circle class="outcome-circle outcome-impression-mobile-circle"></circle>
-							<rect class="outcome-rect outcome-impression-rect"></rect>
-							<rect class="outcome-rect outcome-impression-rect"></rect>
-							<rect class="outcome-rect outcome-impression-rect"></rect>
-							<rect class="outcome-rect outcome-impression-rect"></rect>
+							<defs>
+								<clipPath id="outcome-clip">
+									<rect class="outcome-clipper"></rect>
+								</clipPath>
+							</defs>
+
+							<circle class="outcome-circle"></circle>
+							<circle class="outcome-circle"></circle>
+
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+
+							<circle class="outcome-circle-breakdown"></circle>
 						</svg>
 					</figure>
 				</header>
 
-				<ul class="outcome-details">
-					<li class="outcome-item">
-						<h3 class="outcome-item-name outcome-impression-tablet-text">Tablet</h3>
-						<p class="outcome-item-values">
-							<span class="outcome-item-percentage">40%</span>
-							<span class="outcome-item-price">20.000.000</span>
-						</p>
-					</li>
-
-					<li class="outcome-item">
-						<h3 class="outcome-item-name outcome-impression-mobile-text">Smartphone</h3>
-						<p class="outcome-item-values">
-							<span class="outcome-item-percentage">60%</span>
-							<span class="outcome-item-price">30.000.000</span>
-						</p>
-					</li>
-				</ul>
+				<ul class="outcome-details"></ul>
 
 			</section>
 
-			<section class="outcome outcome-visits">
+			<section class="outcome" id="module-visits">
 				<header class="outcome-header">
-					<h2 class="outcome-title">Visits</h2>
-					<p class="outcome-value">600.000.000</p>
-				
 					<figure class="outcome-figure">
 						<svg class="outcome-vector">
-							<circle class="outcome-circle outcome-visits-tablet-circle"></circle>
-							<circle class="outcome-circle outcome-visits-mobile-circle"></circle>
-							<rect class="outcome-rect outcome-visits-rect"></rect>
-							<rect class="outcome-rect outcome-visits-rect"></rect>
-							<rect class="outcome-rect outcome-visits-rect"></rect>
-							<rect class="outcome-rect outcome-visits-rect"></rect>
+							<defs>
+								<clipPath id="outcome-clip">
+									<rect class="outcome-clipper"></rect>
+								</clipPath>
+							</defs>
+
+							<circle class="outcome-circle"></circle>
+							<circle class="outcome-circle"></circle>
+
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+							<rect class="outcome-rect"></rect>
+
+							<circle class="outcome-circle-breakdown"></circle>
 						</svg>
 					</figure>
 				</header>
 
-				<ul class="outcome-details">
-					<li class="outcome-item">
-						<h3 class="outcome-item-name outcome-visits-tablet-text">Tablet</h3>
-						<p class="outcome-item-values">
-							<span class="outcome-item-percentage">80%</span>
-							<span class="outcome-item-price">480.000.000</span>
-						</p>
-					</li>
-
-					<li class="outcome-item">
-						<h3 class="outcome-item-name outcome-visits-mobile-text">Smartphone</h3>
-						<p class="outcome-item-values">
-							<span class="outcome-item-percentage">20%</span>
-							<span class="outcome-item-price">120.000.000</span>
-						</p>
-					</li>
-				</ul>
+				<ul class="outcome-details"></ul>
 
 			</section>
 		</main>

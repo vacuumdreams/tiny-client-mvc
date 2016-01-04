@@ -30,4 +30,14 @@ $font-weight-normal: 400;
 $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
+$font-size: 16;
+
+// media breakpoints
+
+$mq-break-tablet: 1024 / 16 * 1em;
+
+// media query helpers
+
+$mq-tablet: 'screen and (min-width: #{$mq-break-tablet})';
+
 

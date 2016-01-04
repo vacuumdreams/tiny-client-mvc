@@ -1,3 +1,1 @@
-import App from 'app';
-
-App.run();
+import app from 'app';

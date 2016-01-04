@@ -1,12 +1,20 @@
 .outcome {
 
-	min-width: $outcome-dimension-header * 2;
 	padding: 2em;
+	min-width: $outcome-dimension-header * 2;
+
+	@media #{$mq-tablet} {
+		min-width: auto;
+	}
 
 	&-container {
 		display: flex;
 		align-items: center;
 		height: 100%;
+
+		@media screen and (min-width: $outcome-dimension-header * 6) {
+			justify-content: center;
+		}
 	}
 
 	&-header {
@@ -15,7 +23,7 @@
 		width: $outcome-dimension-header;
 		height: $outcome-dimension-header;
 		margin: 0 auto 1rem;
-		padding: 3.875em 0 1em;
+		padding: 3.7em 0 1em;
 	}
 
 	&-figure {
@@ -36,38 +44,56 @@
 		cx: 50%;
 		cy: 50%;
 		fill: transparent;
-		stroke-width: 5%;
+		stroke: $outcome-color-highlighted;
+		stroke-width: $outcome-dimension-stroke;
 		stroke-dasharray: $outcome-dimension-header * 3.14;
-		//stroke-dashoffset: $outcome-dimension-header * 3.14;
+		transform: rotate(-90deg);
+		transform-origin: 50% 50%;
 		transition: stroke-dashoffset 0.35s;
+
+		&-breakdown {
+			r: 40%;
+			cx: 50%;
+			cy: 50%;
+			clip-path: url(#outcome-clip);
+			fill: rgba($outcome-color-highlighted, 0.15);
+		}
 	}
 
 	&-rect {
-		@include outcome-rects($outcome-dimension-header, $outcome-dimension-rect-longside, $outcome-dimension-rect-shortside);
+		@include outcome-rects($outcome-dimension-stroke, 2%, 1%);
+	}
+
+	&-title,
+	&-value {
+		position: relative;
+		z-index: 1;
+		font-weight: $font-weight-semibold;
+		line-height: 1;
 	}
 
 	&-title {
 		text-transform: uppercase;
 		color: $outcome-color-highlighted;
-		font-size: 1.15em;
-		font-weight: $font-weight-semibold;
+		font-size: 1.35em;
 	}
 
 	&-value {
-		font-size: 1.5em;
-		font-weight: $font-weight-semibold;
+		font-size: 1.75em;
 	}
 
 	&-details {
-		@extend %clearfix;
 		@extend %nolist;
+		display: flex;
+		justify-content: space-between;
 		border-bottom: 2px solid $outcome-color-highlighted;
+
+		&:empty {
+			height: 3.9rem;
+		}
 	}
 
 	&-item {
-		display: inline-block;
-		float: left;
-		width: 50%;
 		padding-bottom: 0.85em;
 
 		&:last-of-type {

@@ -1,4 +1,9 @@
-@mixin outcome-themify($color-tablet, $color-mobile) {
+// @outcome-themify() - helps defining dynamic theme specific styles
+//  -param: $name
+//  -param: $color-tablet
+//  -param: $color-mobile
+
+@mixin outcome-themify($name, $color-tablet, $color-mobile) {
 	&-tablet {
 		&-text {
 			color: $color-tablet;
@@ -22,33 +27,44 @@
 	&-rect {
 		fill: mix($color-tablet, $color-mobile);
 	}
+
+	&-breakdown {
+		clip-path: url(##{$name}-clip);
+		fill: lighten($color-tablet, 60%);
+		opacity: 0.6;
+
+		&-border {
+			clip-path: url(##{$name}-clipborder);
+			fill: $color-tablet;
+			opacity: 0.3;
+		}
+	}
 }
 
-// @outcome-rect - helps calculating rect element positions
+// @outcome-rect() - helps calculating marker rect elements positions
 //  -param: $dimension-container
 //  -param: $dimension-long
 //  -param: $dimension-short
 
-@mixin outcome-rects($dimension-container, $dimension-long, $dimension-short) {
+@mixin outcome-rects($dimension-stroke, $dimension-long, $dimension-short, $offset: 1) {
 	$top: 'nth-of-type(1)';
 	$right: 'nth-of-type(2)';
 	$left: 'nth-of-type(3)';
 	$bottom: 'nth-of-type(4)';
 
-	$dimension-toplefts: ($outcome-dimension-header * 0.05) + ($outcome-dimension-rect-longside / 2);
-	$dimension-rightbottoms: ($outcome-dimension-header * 0.95) - $outcome-dimension-rect-longside - ($outcome-dimension-rect-longside / 2);
-
+	$dimension-toplefts: 100 - $dimension-long - $dimension-stroke - $offset;
+	$dimension-rightbottoms: $dimension-stroke + $offset;
 
 	&:#{$top},
 	&:#{$bottom} {
-		x: $dimension-container / 2;
+		x: 50%;
 		width: $dimension-short;
 		height: $dimension-long;
 	}
 
 	&:#{$right},
 	&:#{$left} {
-		y: $dimension-container / 2;
+		y: 50%;
 		width: $dimension-long;	
 		height: $dimension-short;
 	}

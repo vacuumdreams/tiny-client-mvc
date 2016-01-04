@@ -25,6 +25,21 @@
   },
   "browser": {
     "app": "./scripts/app/core/app.js",
-    "module.outcome": "./scripts/app/modules/outcome/module.js"
+    "mustache": "./scripts/vendor/mustache.js",
+    "module.outcome": "./scripts/app/modules/outcome/index.js",
+    "module.outcome.response": "./scripts/app/modules/outcome/response.js",
+    "module.outcome.model": "./scripts/app/modules/outcome/model.js",
+    "module.outcome.view": "./scripts/app/modules/outcome/view.js"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.16",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-jasmine-html-reporter": "^0.1.8"
+  },
+  "scripts": {
+    "test": "karma start karma.conf.js"
   }
 }
