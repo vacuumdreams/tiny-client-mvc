@@ -1,6 +1,7 @@
 // npm module imports
 
 import gulp from 'gulp';
+import bower from 'gulp-bower'
 
 import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
@@ -48,6 +49,7 @@ const paths = {
 // - handler to deal with third party libs (bower components, in this case)
 
 gulp.task('vendor', () => {
+	bower();
 	paths.vendor.forEach((module) => {
 		// copy each lib to it's destination in the project
 		gulp.src(module.entry)
