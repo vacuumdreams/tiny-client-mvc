@@ -1,4 +1,9 @@
-#MARFEEL javascript task
+#tiny js mvc
+
+this project was originally an interview test task
+
+
+### tools
 
 to run a dev build, you guys need to have the following tools installed globally:
 
@@ -7,27 +12,25 @@ to run a dev build, you guys need to have the following tools installed globally
 - karma (npm install -g karma-cli)
 - gulp (npm install -g gulp)
 
-## tests
+after you have all these set up, just run:
 
-couldn't complete all the test cases unfortunately, never used jasmine (or any other testing framework, for thet matter), so you'll probably meet the lamest test cases ever
+- npm i
+
+this will get all the project dependencies set up for you.
+
+### tests
+
+tests are just experimental for now, as I was playing around karma and jasmine.
 
 tests can be run by the following command:
 
 - npm test
 
-## gulp build
+### build
 
-instead of require.js I've used browserify. I belive require.js can be useful with it's async load approach for [R.A.I.L](https://developers.google.com/web/tools/chrome-devtools/profile/evaluate-performance/rail?hl=en) type of projects, but this time we can probably get away with loading a well concatinated and modularized js file instead of making multiple (quite expensive) ajax requests, and I consider browserify's build process is much more easier to work with. here's a really good read about [require.js vs browserify.](http://benmccormick.org/2015/05/28/moving-past-requirejs/)
-
-I've spent quite a while on playing around with babel.js and the es6 syntax, just to combine doing this task and learning something new and interesting.
-
-to run a build, first you'll need to install the bower components:
-
-- bower install
-
-then you can run gulp to wire it all up:
+you should be able to make everything work just by running:
 
 - gulp
 
-
+the project hasn't got any backend server implementation, so you'll have to drag the index.html in to a browser to see what's going on.
 
